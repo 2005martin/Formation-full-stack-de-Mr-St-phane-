@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ma Liste</title>
+</head>
+<body>
+  <h2>Ma Liste de tâches</h2>
+  <input type="text" id="tache" placeholder="Écris une tâche">
+  <button id="ajouter">Ajouter</button>
+  <ul id="liste"></ul>
+
+  <script>
+    // On récupère les éléments HTML
+let champ = document.getElementById("tache");
+let bouton = document.getElementById("ajouter");
+let liste = document.getElementById("liste");
+
+// Quand on clique sur le bouton
+bouton.addEventListener("click", function() {
+  let texte = champ.value; // on prend ce que l'utilisateur a écrit
+
+  if (texte !== "") {
+    let item = document.createElement("li"); // on crée un nouvel élément <li>
+    item.innerText = texte; // on y met le texte de l'utilisateur
+
+    // Si on clique sur la tâche, elle s'efface
+    item.addEventListener("click", function() {
+      liste.removeChild(item);
+    });
+
+    liste.appendChild(item); // on ajoute l'élément dans <ul>
+    champ.value = ""; // on vide le champ
+  }
+});
+  </script>
+</body>
+</html>
